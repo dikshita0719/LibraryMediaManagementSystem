@@ -1,3 +1,6 @@
+use std::io;
+use std::io::stdin;
+
 #[derive(Debug)] //REQUIRED for printing
 enum MediaType{
     Book,
@@ -58,10 +61,15 @@ impl LibraryItem{
     }
 }
 fn print_item_info(item: &LibraryItem){ //immutable borrwing
-    println!("{:#?}", item);
+    println!("{:#?}",  item);
 }
+
+fn change_title(item: &mut LibraryItem){
+
+}
+
 fn main() {
-    let first = LibraryItem::new(1,String::from("Da Vinci Code"), MediaType::Book, Status::Available,ShelfLocation(String::from("W02"), 2,6)) ;
+    let mut first = LibraryItem::new(1,String::from("Da Vinci Code"), MediaType::Book, Status::Available,ShelfLocation(String::from("W02"), 2,6)) ;
     let second = LibraryItem::new(3,String::from("Pink Floyd: Dark Side of the Moon"), MediaType::Disc, Status::Borrowed,ShelfLocation(String::from("K02"), 5,9)) ;
 
     println!("{:?}", first.get_title());
@@ -70,5 +78,12 @@ fn main() {
     //println!("{:?}", second.get_title()); //Error because the value has been moved in the previous line
 
     print_item_info(&first);
+    println!("Choose a new name to replace: ");
 
+    let mut new_title = String::new();
+    io::stdin().read_line(&mut new_title).unwrap();
+    let new_title = new_title.trim().to_string();
+    first.set_title(new_title);
+
+    print_item_info(&first);
 }
