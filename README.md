@@ -35,7 +35,7 @@ This program allows you to manage books, discs, and movies, track their availabi
 1. Clone the repository:
 
 ```bash
-git clone https://github.com:dikshita0719/LibraryMediaManagementSystem.git
+git clone https://github.com/dikshita0719/LibraryMediaManagementSystem.git
 cd LibraryMediaManagementsystem
 ```
 
